@@ -609,7 +609,6 @@ const section16Texts = newSection16.filter((el: any) => el.type === "text");
       </div>
     </div>
 
-    {/* Right Column */}
     <div className="new-right">
       {newSection
         .filter((el: any) => el.type === "mask_ns_photo_group")
@@ -630,7 +629,6 @@ const section16Texts = newSection16.filter((el: any) => el.type === "text");
 {/* New Section --> 11 */}
 <section className="new-section-11">
   <div className="container">
-    {/* Text Block */}
     {newSection11
       .filter((el: any) => el.type === "text")
       .map((el: any) => (
@@ -640,7 +638,6 @@ const section16Texts = newSection16.filter((el: any) => el.type === "text");
         </div>
       ))}
 
-    {/* Featured Boxes */}
     <div className="new11-features">
       {newSection11
         .filter((el: any) => el.type === "mask_ns_featured_boxes")
@@ -668,7 +665,6 @@ const section16Texts = newSection16.filter((el: any) => el.type === "text");
 {/* New Section --> 12 */}
 <section className="new-section-12">
   <div className="container">
-    {/* Text Block */}
     {newSection12
       .filter((el: any) => el.type === "text")
       .map((el: any) => (
@@ -677,7 +673,6 @@ const section16Texts = newSection16.filter((el: any) => el.type === "text");
         </div>
       ))}
 
-    {/* Features Grid */}
     <div className="new12-grid">
       {newSection12
         .filter((el: any) => el.type === "mask_ns_icon_box")
@@ -705,14 +700,12 @@ const section16Texts = newSection16.filter((el: any) => el.type === "text");
 {/* New Section --> 13 */}
 <section className="new-section-13">
   <div className="container">
-    {/* Heading */}
     {reviewsHeading && (
       <div className="reviews-heading">
         {parse(reviewsHeading, parseOptions)}
       </div>
     )}
 
-    {/* Reviews Track (animated scroll) */}
     <div className="reviews-track">
   {reviewsData.concat(reviewsData).map((review: any, idx: number) => {
     const rating = parseFloat(review.reviewStar);
@@ -722,7 +715,6 @@ const section16Texts = newSection16.filter((el: any) => el.type === "text");
 
     return (
       <div key={idx} className="review-card">
-        {/* Header row with name + stars */}
         <div className="review-header">
           <div className="review-author">
             <strong>{review.reviewName}</strong>
@@ -738,7 +730,6 @@ const section16Texts = newSection16.filter((el: any) => el.type === "text");
           </div>
         </div>
 
-        {/* Review text */}
         <p className="review-text">"{review.reviewText}"</p>
       </div>
     );
@@ -751,7 +742,6 @@ const section16Texts = newSection16.filter((el: any) => el.type === "text");
 {/* New Section --> 14 */}
 <section className="new-section-14">
   <div className="container">
-    {/* Heading/Text */}
     {newSection14
       .filter((el: any) => el.type === "text")
       .map((el: any) => (
@@ -760,7 +750,6 @@ const section16Texts = newSection16.filter((el: any) => el.type === "text");
         </div>
       ))}
 
-    {/* Icon Boxes (3 columns) */}
     <div className="new14-grid">
       {newSection14
         .filter((el: any) => el.type === "mask_ns_icon_box")
@@ -807,13 +796,11 @@ const section16Texts = newSection16.filter((el: any) => el.type === "text");
 {/* New Section --> 15 (FAQ) */}
 <section className="new-section-15">
   <div className="container">
-    {/* Heading */}
     {faqHeading && (
       <div className="faq-heading">
         {parse(faqHeading, parseOptions)}
       </div>
     )}
-{/* Accordions */}
 <div className="faq-grid">
   {faqAccordions.map((accordion: any, accIdx: number) => (
     <div key={accIdx} className="faq-column">
@@ -833,7 +820,7 @@ const section16Texts = newSection16.filter((el: any) => el.type === "text");
             <div
               className="faq-answer"
               style={{
-                maxHeight: isOpen ? "1000px" : "0px", // animate smoothly
+                maxHeight: isOpen ? "1000px" : "0px", 
               }}
             >
               <div className="faq-answer-inner">

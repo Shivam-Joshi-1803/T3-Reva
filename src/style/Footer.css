@@ -110,7 +110,7 @@
 }
 
 .footer-section h4 {
-  color: #40c9c6;
+  color: var(--secondary_color);
   margin-bottom: 12px;
   font-size: 16px;
   font-weight: bold;

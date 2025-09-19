@@ -709,7 +709,6 @@
   display: none;
 }
 
-/* Accordion styles */
 .mobile-item {
   background: #fff;
   border: 1px solid #ddd;
@@ -829,7 +828,6 @@
   margin: 0 auto;
 }
 
-/* Responsive Grid */
 .products-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -894,7 +892,6 @@
   margin-left: 4px;
 }
 
-/* Tablets */
 @media (max-width: 992px) {
   .products-heading h2 {
     font-size: 2rem;
@@ -907,7 +904,6 @@
   }
 }
 
-/* Mobiles */
 @media (max-width: 576px) {
   .products-section {
     padding: 50px 0;
@@ -948,7 +944,6 @@
   align-items: center;
 }
 
-/* ---------- Left Column ---------- */
 .new-left {
   display: flex;
   flex-direction: column;
@@ -989,7 +984,6 @@
   line-height: 1.6;
 }
 
-/* ---------- Right Column (Mockups) ---------- */
 .new-right {
   position: relative;
   display: flex;
@@ -1019,7 +1013,6 @@
   margin-right: clamp(2rem, 8vw, 10rem);
 }
 
-/* ---------- Responsive ---------- */
 @media (max-width: 992px) {
   .new-section .container {
     grid-template-columns: 1fr;
@@ -1074,7 +1067,7 @@
   padding: clamp(50px, 8vw, 100px) clamp(15px, 5vw, 40px);
   background: #fff;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  overflow-x: hidden; /* ✅ Prevent side scroll */
+  overflow-x: hidden; 
 }
 
 .new-section-11 .container {
@@ -1082,10 +1075,9 @@
   margin: 0 auto;
   text-align: center;
   padding: 0 1rem;
-  box-sizing: border-box; /* ✅ Prevent padding overflow */
+  box-sizing: border-box;
 }
 
-/* Top Text */
 .new11-text {
   margin-bottom: clamp(20px, 5vw, 50px);
 }
@@ -1104,25 +1096,23 @@
   margin-top: 10px;
 }
 
-/* Features Grid */
 .new11-features {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); /* ✅ was 280px */
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); 
   gap: clamp(20px, 4vw, 40px);
   text-align: left;
   margin: 0 auto;
-  max-width: 100%; /* ✅ keep inside screen */
+  max-width: 100%; 
   box-sizing: border-box;
 }
 
-/* Feature Card */
 .new11-feature {
   background: #fff;
   border: 1px solid #eaeaea;
   border-radius: 8px;
   padding: clamp(15px, 3vw, 25px);
   transition: box-shadow 0.3s ease;
-  box-sizing: border-box; /* ✅ stops overflow on padding */
+  box-sizing: border-box; 
 }
 
 .new11-feature:hover {
@@ -1131,10 +1121,10 @@
 
 .new11-feature img {
   max-width: 100%;
-  height: auto; /* ✅ keeps ratio */
+  height: auto; 
   margin-bottom: 20px;
   border-radius: 6px;
-  display: block; /* ✅ avoids inline spacing overflow */
+  display: block; 
 }
 
 .new11-feature h3 {
@@ -1192,7 +1182,6 @@
   text-align: center;
 }
 
-/* Text block */
 .new12-text {
   margin-bottom: clamp(30px, 6vw, 50px);
 }
@@ -1211,7 +1200,6 @@
   margin: 0 auto;
 }
 
-/* Grid */
 .new12-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -1232,14 +1220,12 @@
   box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.12);
 }
 
-/* Icon */
 .new12-icon {
   width: clamp(22px, 2.5vw, 28px);
   height: clamp(22px, 2.5vw, 28px);
   margin-bottom: 15px;
 }
 
-/* Title */
 .new12-title {
   font-size: clamp(1rem, 1.4vw, 1.1rem);
   font-weight: 600;
@@ -1247,14 +1233,13 @@
   margin-bottom: 10px;
 }
 
-/* Description */
 .new12-desc {
   font-size: clamp(0.9rem, 1.3vw, 0.95rem);
   color: var(--text_color);
   line-height: 1.5;
 }
 /* ===============================
-   Section 13 - Customer Reviews
+   Section 13 - Reviews
 ================================= */
 .new-section-13 {
   padding: clamp(50px, 8vw, 80px) clamp(15px, 5vw, 40px);
@@ -1279,7 +1264,6 @@
   line-height: 1.3;
 }
 
-/* Track for scrolling animation */
 .new-section-13 .reviews-track {
   display: flex;
   gap: clamp(16px, 3vw, 30px);
@@ -1292,7 +1276,6 @@
   animation-play-state: paused;
 }
 
-/* Review card styling */
 .new-section-13 .review-card {
   background: #fff;
   padding: clamp(16px, 3vw, 25px) clamp(20px, 4vw, 30px);
@@ -1306,7 +1289,6 @@
   gap: clamp(10px, 2vw, 15px);
 }
 
-/* Card header: author left, rating right */
 .new-section-13 .review-header {
   display: flex;
   justify-content: space-between;
@@ -1350,7 +1332,6 @@
   color: var(--primary_color);
 }
 
-/* Half star effect */
 .new-section-13 .half-star {
   display: inline-block;
   position: relative;
@@ -1366,30 +1347,24 @@
   color: var(--primary_color);
 }
 
-/* Review body text */
 .new-section-13 .review-text {
   font-size: clamp(0.85rem, 2vw, 0.95rem);
   line-height: 1.6;
   color: var(--text_color);
 }
 
-/* Infinite scroll animation */
 @keyframes scroll-left {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
 
-/* --- Responsive fixes --- */
-
-/* Tablet & below (<= 992px) */
 @media (max-width: 992px) {
   .new-section-13 .review-card {
-    min-width: 45%; /* two cards per row feel */
+    min-width: 45%; 
     max-width: 45%;
   }
 }
 
-/* Small tablets & large phones (<= 768px) */
 @media (max-width: 768px) {
   .new-section-13 .reviews-track {
     gap: 16px;
@@ -1401,7 +1376,6 @@
   }
 }
 
-/* Extra small phones (<= 480px) */
 @media (max-width: 480px) {
   .new-section-13 .review-card {
     min-width: 95%;
@@ -1409,9 +1383,6 @@
     padding: 14px 18px;
   }
 }
-/* --- Responsive fixes --- */
-
-/* Tablet & below (<= 992px) */
 @media (max-width: 992px) {
   .new-section-13 .review-card {
     min-width: 45%;
@@ -1419,14 +1390,13 @@
   }
 }
 
-/* Small tablets & phones (<= 768px) */
 @media (max-width: 768px) {
   .new-section-13 .reviews-track {
     width: 100%;
     gap: 16px;
-    animation: none;         /* stop infinite scroll */
-    overflow-x: auto;        /* allow manual swipe */
-    scroll-snap-type: x mandatory; /* smooth snap */
+    animation: none;         
+    overflow-x: auto;        
+    scroll-snap-type: x mandatory; 
   }
 
   .new-section-13 .review-card {
@@ -1437,7 +1407,6 @@
   }
 }
 
-/* Extra small phones (<= 480px) */
 @media (max-width: 480px) {
   .new-section-13 .review-card {
     min-width: 95%;
@@ -1453,7 +1422,7 @@ Section 14
   padding: clamp(50px, 8vw, 80px) 0;
   background: #f9f9f9;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  overflow-x: hidden; /* prevent side scroll */
+  overflow-x: hidden; 
 }
 
 .new-section-14 .container {
@@ -1461,15 +1430,15 @@ Section 14
   max-width: 1200px;
   margin: 0 auto;
   padding-left: 1rem;
-  padding-right: 1rem; /* safe padding for small screens */
+  padding-right: 1rem; 
   text-align: center;
-  box-sizing: border-box; /* ensure padding doesn’t overflow */
+  box-sizing: border-box; 
 }
 
 /* Heading */
 .new14-text {
   margin-bottom: clamp(25px, 5vw, 40px);
-  padding: 0 0.5rem; /* prevent text overflow */
+  padding: 0 0.5rem; 
 }
 
 .new14-text h2 {
@@ -1488,17 +1457,15 @@ Section 14
   margin: 0 auto;
 }
 
-/* Cards Grid */
 .new14-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); /* shrink better */
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); 
   gap: clamp(16px, 4vw, 30px);
   margin-top: clamp(25px, 5vw, 40px);
   width: 100%;
   box-sizing: border-box;
 }
 
-/* Card */
 .new14-card {
   background: #fff;
   border-radius: 10px;
@@ -1508,7 +1475,7 @@ Section 14
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  min-width: 0; /* fix overflow from flex children */
+  min-width: 0; 
 }
 
 .new14-icon {
@@ -1522,7 +1489,7 @@ Section 14
   font-size: clamp(1.1rem, 3vw, 1.5rem);
   font-weight: 500;
   color: var(--secondary_color);
-  word-break: break-word; /* prevent long words from breaking layout */
+  word-break: break-word;
 }
 
 .new14-text-block {
@@ -1532,7 +1499,6 @@ Section 14
   word-break: break-word;
 }
 
-/* List */
 .new14-list {
   list-style: none;
   padding: 0;
@@ -1556,10 +1522,9 @@ Section 14
   font-size: 0.9rem;
 }
 
-/* Mobile fine-tuning */
 @media (max-width: 480px) {
   .new14-grid {
-    grid-template-columns: 1fr; /* single column on small screens */
+    grid-template-columns: 1fr; 
     gap: 20px;
   }
 
@@ -1603,7 +1568,6 @@ Section 14
   margin: 0 auto;
 }
 
-/* FAQ Item */
 .faq-item {
   border: 1px solid #e5e5e5;
   border-radius: 6px;
@@ -1623,7 +1587,6 @@ Section 14
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
-/* Question Row */
 .faq-question {
   font-size: clamp(0.95rem, 1.2vw, 1rem);
   font-weight: 600;
@@ -1643,7 +1606,6 @@ Section 14
   transform: rotate(180deg);
 }
 
-/* Answer Wrapper (smooth height animation) */
 .faq-answer {
   max-height: 0;
   overflow: hidden;
@@ -1657,25 +1619,21 @@ Section 14
   line-height: 1.6;
 }
 
-/* Hover effect */
 .faq-item:hover {
   border-color: var(--secondary_color, #61dcdf);
 }
 
 .faq-item:hover .faq-question {
-  color: #007bff; /* bright blue on hover */
+  color: #007bff; 
 }
 
 .faq-item:hover .faq-icon {
   color: #007bff;
 }
 
-/* ============================
-   Section 16 - Call To Action
-=============================== */
 .new-section-16 {
   padding: 20px 0px;
-  background: var(--secondary_color); /* light aqua background */
+  background: var(--secondary_color); 
   text-align: center;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   color: #fff;
@@ -1699,7 +1657,7 @@ Section 14
   color: #f5f5f5;
 }
 
-/* CTA Button with animated hover effect */
+
 .new-section-16 .btn {
   position: relative;
   display: inline-block;
@@ -1744,7 +1702,6 @@ Section 14
   padding-bottom: 3px;
 }
 
-/* Responsive */
 @media (max-width: 768px) {
   .new-section-16 {
     padding: 70px 15px;

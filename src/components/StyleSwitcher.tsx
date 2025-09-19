@@ -17,8 +17,14 @@ const StyleSwitcher: React.FC = () => {
   useEffect(() => {
     const fetchSettings = async () => {
       try {
-        const data = await getMyData("remote");
+        const data = await getMyData("/", "remote"); 
         const settings = data?.page?.constants?.ns_style || {};
+
+        if (!settings || Object.keys(settings).length === 0) {
+          console.warn("No style settings found");
+          return;
+        }
+
         setThemeSettings(settings);
 
         Object.keys(settings).forEach((key) => {
@@ -37,12 +43,11 @@ const StyleSwitcher: React.FC = () => {
           document.documentElement.style.setProperty("--background_color", "#ffffff");
         }
 
-
         if (settings.boxed_layout?.value === settings.boxed_layout?.trueValue) {
           document.body.classList.add("boxed-layout");
         }
       } catch (error) {
-        console.error("Error :", error);
+        console.error("Error fetching theme settings:", error);
       }
     };
 
@@ -52,16 +57,18 @@ const StyleSwitcher: React.FC = () => {
   const handleChange = (key: string, value: string) => {
     const setting = themeSettings[key];
 
-    if (setting?.type === "color") {
+    if (!setting) return;
+
+    if (setting.type === "color") {
       document.documentElement.style.setProperty(`--${key}`, value);
     }
 
     if (key === "bg_dark") {
-      if (value === (setting?.trueValue || "1")) {
+      if (value === (setting.trueValue || "1")) {
         document.body.classList.add("dark-mode");
         document.documentElement.style.setProperty(
           "--background_color",
-          themeSettings["secondary_color"]?.value || "#61dcdf"
+          themeSettings.secondary_color?.value || "#61dcdf"
         );
       } else {
         document.body.classList.remove("dark-mode");
@@ -69,16 +76,15 @@ const StyleSwitcher: React.FC = () => {
       }
     }
 
-if (key === "boxed_layout") {
-  if (value === (setting?.trueValue || "1")) {
-    document.body.classList.add("boxed-layout");
-    document.body.classList.remove("wide-layout");
-  } else {
-    document.body.classList.remove("boxed-layout");
-    document.body.classList.add("wide-layout");
-  }
-}
-
+    if (key === "boxed_layout") {
+      if (value === (setting.trueValue || "1")) {
+        document.body.classList.add("boxed-layout");
+        document.body.classList.remove("wide-layout");
+      } else {
+        document.body.classList.remove("boxed-layout");
+        document.body.classList.add("wide-layout");
+      }
+    }
 
     if (key === "enable_search") {
       document.body.setAttribute("data-search", value === "1" ? "on" : "off");
@@ -173,30 +179,30 @@ if (key === "boxed_layout") {
           )}
 
           <h3>Header Menu</h3>
-          {themeSettings["headerLayout"] && renderField("headerLayout", themeSettings["headerLayout"])}
+          {themeSettings.headerLayout && renderField("headerLayout", themeSettings.headerLayout)}
 
           <h3>Footer Menu</h3>
-          {themeSettings["footerLayout"] && renderField("footerLayout", themeSettings["footerLayout"])}
+          {themeSettings.footerLayout && renderField("footerLayout", themeSettings.footerLayout)}
 
           <h3>Main Font Family</h3>
-          {themeSettings["site_font_family_name"] &&
-            renderField("site_font_family_name", themeSettings["site_font_family_name"])}
+          {themeSettings.site_font_family_name &&
+            renderField("site_font_family_name", themeSettings.site_font_family_name)}
 
           <h3>Layouts Switcher</h3>
-          {themeSettings["boxed_layout"] && renderField("boxed_layout", themeSettings["boxed_layout"])}
+          {themeSettings.boxed_layout && renderField("boxed_layout", themeSettings.boxed_layout)}
 
           <h3>Background Color</h3>
-          {themeSettings["bg_dark"] && renderField("bg_dark", themeSettings["bg_dark"])}
+          {themeSettings.bg_dark && renderField("bg_dark", themeSettings.bg_dark)}
 
           <h3>Search Type</h3>
-          {themeSettings["enable_search"] && renderField("enable_search", themeSettings["enable_search"])}
+          {themeSettings.enable_search && renderField("enable_search", themeSettings.enable_search)}
 
           <h3>Language Type</h3>
-          {themeSettings["enable_language"] && renderField("enable_language", themeSettings["enable_language"])}
+          {themeSettings.enable_language && renderField("enable_language", themeSettings.enable_language)}
 
           <h3>Page Stripe</h3>
-          {themeSettings["page_stripe_option"] &&
-            renderField("page_stripe_option", themeSettings["page_stripe_option"])}
+          {themeSettings.page_stripe_option &&
+            renderField("page_stripe_option", themeSettings.page_stripe_option)}
 
           <div className={styles.actions}>
             <button type="button" onClick={() => alert("✅ Settings Applied")}>
