@@ -1,12 +1,11 @@
-// src/pages/Page.tsx
 import React, { useEffect, useState } from "react";
 import { getMyData } from "../api/api";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import StyleSwitcher from "../components/StyleSwitcher";
 import LandingPage from "../components/LandingPage";
-import ContactUsPage from "./ContactUsPage"; // ✅ new import
-import MasonryLayoutPage from "./MasonryLayoutPage"; // ✅ import it
+import ContactUsPage from "./ContactUsPage"; 
+import MasonryLayoutPage from "./MasonryLayoutPage"; 
 
 interface ApiResponse {
   page?: {
