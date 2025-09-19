@@ -17,3 +17,4 @@ export const getMyData = async (
   const data = await response.json();
   return data;
 };
+  
