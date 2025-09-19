@@ -4,8 +4,8 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import StyleSwitcher from "../components/StyleSwitcher";
 import LandingPage from "../components/LandingPage";
-import ContactUsPage from "./ContactUsPage"; 
-import MasonryLayoutPage from "./MasonryLayoutPage"; 
+import ContactUsPage from "./ContactUsPage";
+import MasonryLayoutPage from "./MasonryLayoutPage";
 
 interface ApiResponse {
   page?: {
@@ -24,9 +24,7 @@ interface ApiResponse {
   };
 }
 
-const Loader: React.FC = () => (
-  <div id="wifi-loader">{/* loader SVG */}</div>
-);
+const Loader: React.FC = () => <div id="wifi-loader">{/* loader SVG */}</div>;
 
 const Page: React.FC<{ slug: string }> = ({ slug }) => {
   const [data, setData] = useState<ApiResponse | null>(null);
@@ -38,9 +36,6 @@ const Page: React.FC<{ slug: string }> = ({ slug }) => {
       try {
         setLoading(true);
         const json = await getMyData(slug, "remote");
-
-        console.log("Fetched data for slug:", slug, json);
-
         setData(json);
       } catch (err: any) {
         setError(err.message);
@@ -63,18 +58,15 @@ const Page: React.FC<{ slug: string }> = ({ slug }) => {
     <div>
       <Header data={{ mainNavigation: data.page?.mainNavigation || [] }} />
 
-      {slug === "home" || slug === "/" ? (
-  <LandingPage content={{ colPos0: heroContent }} />
-) : slug === "/portfolio/masonry-layout" ? (
-  <MasonryLayoutPage data={data} />
-) : slug === "/contact-us" ? (
-  <ContactUsPage data={data} />   
-) : (
-  <main>
-    <p style={{ textAlign: "center" }}>No custom renderer for this page yet.</p>
-  </main>
-)}
-
+      {slug === "/" || slug === "home" ? (
+        <LandingPage content={{ colPos0: heroContent }} />
+      ) : slug === "/portfolio/masonry-layout" ? (
+        <MasonryLayoutPage data={data} />
+      ) : slug === "/contact-us" ? (
+        <ContactUsPage data={data} />
+      ) : (
+        <main style={{ textAlign: "center" }}>404: Page not found</main>
+      )}
 
       <StyleSwitcher />
       <Footer footerBlocks={footerBlocks} footerNavigation={footerNavigation} />
