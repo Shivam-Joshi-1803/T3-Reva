@@ -43,8 +43,6 @@ const placeholderMap: Record<string, string> = {
   text: "Enter your name",
   email: "Enter your email",
   textarea: "Write your message",
-  tel: "Enter your phone number",
-  default: "Enter value",
 };
 
 const renderForm = (el: any) => {
@@ -54,35 +52,64 @@ const renderForm = (el: any) => {
   const submitLabel =
     el.content?.form_additional?.renderingOptions?.submitButtonLabel || "Submit";
 
-  const [errors, setErrors] = React.useState<{ [key: string]: string }>({});
+const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
+  const formEl = e.currentTarget;
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault(); 
-    const formEl = e.currentTarget;
-    const inputs = formEl.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>(
-      "input, textarea"
-    );
+  const inputs = formEl.querySelectorAll<
+    HTMLInputElement | HTMLTextAreaElement
+  >("input, textarea");
 
-    const newErrors: { [key: string]: string } = {};
-    inputs.forEach((input) => {
-      const name = input.name || input.id;
-      if (input.hasAttribute("required") && !input.value.trim()) {
-        newErrors[name] = "This field is required.";
+  formEl.querySelectorAll(".error-message").forEach((el) => el.remove());
+  formEl.querySelectorAll(".error").forEach((el) => el.classList.remove("error"));
+
+  let valid = true;
+
+  inputs.forEach((input) => {
+    if (input.type === "hidden") return;
+
+    if (input.type === "checkbox") {
+      if (!input.checked) {
+        const error = document.createElement("p");
+        error.className = "error-message";
+        error.innerText = "You must agree before submitting.";
+        input.parentElement?.insertAdjacentElement("afterend", error);
+        input.classList.add("error");
+        valid = false;
       }
-      if (
-        input.type === "email" &&
-        input.value &&
-        !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value)
-      ) {
-        newErrors[name] = "Please enter a valid email.";
-      }
-    });
-    setErrors(newErrors);
-
-    if (Object.keys(newErrors).length === 0) {
-      alert("Form validation passed ✅ (demo mode, submission blocked).");
+      return; 
     }
-  };
+
+    if (!input.value.trim()) {
+      const error = document.createElement("p");
+      error.className = "error-message";
+      error.innerText = "This field is required.";
+      input.insertAdjacentElement("afterend", error);
+      input.classList.add("error");
+      valid = false;
+      return;
+    }
+
+    if (
+      input.type === "email" &&
+      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value)
+    ) {
+      const error = document.createElement("p");
+      error.className = "error-message";
+      error.innerText = "Please enter a valid email.";
+      input.insertAdjacentElement("afterend", error);
+      input.classList.add("error");
+      valid = false;
+    }
+  });
+
+  if (valid) {
+    alert("Form submitted successfully!");
+    formEl.reset();
+  }
+};
+
+
 
   const fields = [...(form?.elements || [])].sort((a, b) =>
     a.type === "checkbox" ? -1 : b.type === "checkbox" ? 1 : 0
@@ -92,10 +119,9 @@ const renderForm = (el: any) => {
     <div key={el.id} className="contact-form-wrapper">
       {header && <h3 className="form-header">{header}</h3>}
       {subheader && <p className="form-subheader">{subheader}</p>}
-      <form className="contact-form" onSubmit={handleSubmit}>
+      <form className="contact-form" onSubmit={handleSubmit} noValidate>
         {fields.map((field: any, idx: number) => {
           const name = field.identifier || `field-${idx}`;
-          const errorMsg = errors[name];
           const placeholder =
             placeholderMap[field.type?.toLowerCase()] || placeholderMap.default;
 
@@ -103,10 +129,9 @@ const renderForm = (el: any) => {
             return (
               <div key={idx} className="form-field checkbox-field">
                 <label>
-                  <input type="checkbox" id={name} name={name} required={field.required} />{" "}
+                  <input type="checkbox" id={name} name={name} />{" "}
                   {field.label || "I agree"}
                 </label>
-                {errorMsg && <p className="error-message">{errorMsg}</p>}
               </div>
             );
           }
@@ -119,10 +144,8 @@ const renderForm = (el: any) => {
                   id={name}
                   name={name}
                   placeholder={placeholder}
-                  className={`form-input ${errorMsg ? "error" : ""}`}
-                  required={field.required}
+                  className="form-input"
                 />
-                {errorMsg && <p className="error-message">{errorMsg}</p>}
               </div>
             );
           }
@@ -135,10 +158,8 @@ const renderForm = (el: any) => {
                 type={field.type?.toLowerCase() || "text"}
                 name={name}
                 placeholder={placeholder}
-                className={`form-input ${errorMsg ? "error" : ""}`}
-                required={field.required}
+                className="form-input"
               />
-              {errorMsg && <p className="error-message">{errorMsg}</p>}
             </div>
           );
         })}
@@ -150,8 +171,7 @@ const renderForm = (el: any) => {
   );
 };
 
-
-
+/* -------------------- Other Renders (Map + Icon Box) -------------------- */
 const renderMap = (el: any) => {
   const mapUrl = el.content?.mapFrame?.href;
   if (!mapUrl) return null;
@@ -269,14 +289,12 @@ const ContactUsPage: React.FC<ContactUsPageProps> = ({ data }) => {
 
       {(contactHeading || contactForm || iconBoxes.length > 0) && (
         <section className="contact-section contactus-section">
-              {contactHeading && renderText(contactHeading)}
+          {contactHeading && renderText(contactHeading)}
           <div className="container contactus-layout">
             <div className="icon-boxes">
               {iconBoxes.map((box: any) => renderIconBox(box))}
             </div>
-            <div>
-              {contactForm && renderForm(contactForm)}
-            </div>
+            <div>{contactForm && renderForm(contactForm)}</div>
           </div>
         </section>
       )}

@@ -43,7 +43,7 @@
 .portfolio-filter li {
   cursor: pointer;
   font-size: 0.95rem;
-  color: #555;
+  color: var(--text_color);
   transition: color 0.3s;
   position: relative;
 }
