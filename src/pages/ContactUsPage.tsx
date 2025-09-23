@@ -65,43 +65,45 @@ const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 
   let valid = true;
 
-  inputs.forEach((input) => {
-    if (input.type === "hidden") return;
+inputs.forEach((input) => {
+  if (input.type === "hidden") return;
 
-    if (input.type === "checkbox") {
-      if (!input.checked) {
-        const error = document.createElement("p");
-        error.className = "error-message";
-        error.innerText = "You must agree before submitting.";
-        input.parentElement?.insertAdjacentElement("afterend", error);
-        input.classList.add("error");
-        valid = false;
-      }
-      return; 
-    }
-
-    if (!input.value.trim()) {
+  if (input instanceof HTMLInputElement && input.type === "checkbox") {
+    if (!input.checked) {
       const error = document.createElement("p");
       error.className = "error-message";
-      error.innerText = "This field is required.";
-      input.insertAdjacentElement("afterend", error);
-      input.classList.add("error");
-      valid = false;
-      return;
-    }
-
-    if (
-      input.type === "email" &&
-      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value)
-    ) {
-      const error = document.createElement("p");
-      error.className = "error-message";
-      error.innerText = "Please enter a valid email.";
-      input.insertAdjacentElement("afterend", error);
+      error.innerText = "You must agree before submitting.";
+      input.parentElement?.insertAdjacentElement("afterend", error);
       input.classList.add("error");
       valid = false;
     }
-  });
+    return;
+  }
+
+  if (!input.value.trim()) {
+    const error = document.createElement("p");
+    error.className = "error-message";
+    error.innerText = "This field is required.";
+    input.insertAdjacentElement("afterend", error);
+    input.classList.add("error");
+    valid = false;
+    return;
+  }
+
+  if (
+    input instanceof HTMLInputElement &&
+    input.type === "email" &&
+    !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value)
+  ) {
+    const error = document.createElement("p");
+    error.className = "error-message";
+    error.innerText = "Please enter a valid email.";
+    input.insertAdjacentElement("afterend", error);
+    input.classList.add("error");
+    valid = false;
+  }
+});
+
 
   if (valid) {
     alert("Form submitted successfully!");

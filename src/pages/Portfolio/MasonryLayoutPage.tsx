@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../style/Masonry.css";
+import "../../style/Masonry.css";
 
 interface MasonryLayoutPageProps {
   data: any;
@@ -94,7 +94,7 @@ const MasonryLayoutPage: React.FC<MasonryLayoutPageProps> = ({ data }) => {
         </ul>
       </nav>
 
-      <section className="portfolio-grid">{renderPortfolioItems()}</section>
+      <section className="img-portfolio-grid">{renderPortfolioItems()}</section>
     </div>
   );
 };

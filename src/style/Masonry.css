@@ -54,7 +54,7 @@
   font-weight: 600;
 }
 
-.portfolio-grid {
+.img-portfolio-grid {
   column-count: 3;
   padding: 100px 80px;
   column-gap: 20px;
@@ -114,13 +114,13 @@
 }
 
 @media (max-width: 992px) {
-  .portfolio-grid {
+  .img-portfolio-grid {
     column-count: 2;
   }
 }
 
 @media (max-width: 600px) {
-  .portfolio-grid {
+  .img-portfolio-grid {
     column-count: 1;
   }
 }

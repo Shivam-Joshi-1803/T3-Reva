@@ -5,7 +5,8 @@ import Footer from "../components/Footer";
 import StyleSwitcher from "../components/StyleSwitcher";
 import LandingPage from "../components/LandingPage";
 import ContactUsPage from "./ContactUsPage";
-import MasonryLayoutPage from "./MasonryLayoutPage";
+import MasonryLayoutPage from "./Portfolio/MasonryLayoutPage";
+import PortfolioGrid from "./Portfolio/PortfolioGridPage";
 
 interface ApiResponse {
   page?: {
@@ -36,9 +37,13 @@ const Page: React.FC<{ slug: string }> = ({ slug }) => {
       try {
         setLoading(true);
         const json = await getMyData(slug, "remote");
+
+        console.log("Fetched data for slug:", slug, json);
+
         setData(json);
       } catch (err: any) {
         setError(err.message);
+        console.error("Error fetching data for slug:", slug, err);
       } finally {
         setLoading(false);
       }
@@ -59,14 +64,16 @@ const Page: React.FC<{ slug: string }> = ({ slug }) => {
       <Header data={{ mainNavigation: data.page?.mainNavigation || [] }} />
 
       {slug === "/" || slug === "home" ? (
-        <LandingPage content={{ colPos0: heroContent }} />
-      ) : slug === "/portfolio/masonry-layout" ? (
-        <MasonryLayoutPage data={data} />
-      ) : slug === "/contact-us" ? (
-        <ContactUsPage data={data} />
-      ) : (
-        <main style={{ textAlign: "center" }}>404: Page not found</main>
-      )}
+  <LandingPage content={{ colPos0: heroContent }} />
+) : slug === "/portfolio/masonry-layout" ? (
+  <MasonryLayoutPage data={data} />
+) : slug === "/portfolio/portfolio-grid" ? (
+  <PortfolioGrid data={data} />
+) : slug === "/contact-us" ? (
+  <ContactUsPage data={data} />
+) : (
+  <main style={{ textAlign: "center" }}>404: Page not found</main>
+)}
 
       <StyleSwitcher />
       <Footer footerBlocks={footerBlocks} footerNavigation={footerNavigation} />
